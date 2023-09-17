@@ -3,7 +3,9 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Comment extends Resource
@@ -41,6 +43,12 @@ class Comment extends Resource
     {
         return [
             ID::make()->sortable(),
+            Text::make('Text')
+                ->readonly(),
+            BelongsTo::make('User')
+                ->readonly(),
+            BelongsTo::make('Post')
+                ->readonly()
         ];
     }
 

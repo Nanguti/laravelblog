@@ -3,8 +3,11 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Murdercode\TinymceEditor\TinymceEditor;
 
 class Post extends Resource
 {
@@ -20,7 +23,7 @@ class Post extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -28,7 +31,7 @@ class Post extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id','title', 'content', 'user_id', 'category_id'
     ];
 
     /**
@@ -41,6 +44,14 @@ class Post extends Resource
     {
         return [
             ID::make()->sortable(),
+            Text::make('Title')
+                ->required(),
+            BelongsTo::make('Category'),
+            TinymceEditor::make(__('Content'), 'content')
+                ->rules(['required', 'min:20'])
+                ->fullWidth()
+                ->help(__('The content of the article.')),
+            BelongsTo::make('User')
         ];
     }
 
