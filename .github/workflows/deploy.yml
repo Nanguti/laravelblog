@@ -1,0 +1,40 @@
+name: Deploy Laravel App
+
+on:
+  push:
+    branches:
+      - main # Change to the branch you want to deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 7.4 # Change to your PHP version
+
+    - name: Install Composer dependencies
+      run: composer install
+
+    - name: Generate Laravel application key
+      run: php artisan key:generate
+
+    - name: Deploy using SSH
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        SSH_USERNAME: your-ssh-username
+        SSH_HOST: your-ssh-host
+        SSH_PORT: 22 # Change to your SSH port if different
+        APP_PATH: /path/to/your/app # Change to your app path on the server
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
+        rsync -az --exclude 'vendor/' --exclude 'storage/' --exclude '.env' . $SSH_USERNAME@$SSH_HOST:$APP_PATH
+        ssh $SSH_USERNAME@$SSH_HOST -p $SSH_PORT "cd $APP_PATH && composer install --no-dev"
