@@ -31,4 +31,15 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function relatedPosts(){
+        return $this->hasMany(Post::class,'category_id','category_id')->where('status','active')->orderBy('id','DESC')->limit(4);
+    }
+
+    public static function getPostBySlug($slug)
+    {
+        return Post::with(['relatedPosts', 'comments'])
+            ->where('slug',$slug)
+            ->first();
+    }
+
 }

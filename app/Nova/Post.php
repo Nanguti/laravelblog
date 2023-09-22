@@ -5,6 +5,8 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Murdercode\TinymceEditor\TinymceEditor;
@@ -31,7 +33,7 @@ class Post extends Resource
      * @var array
      */
     public static $search = [
-        'id','title', 'content', 'user_id', 'category_id'
+        'id','title', 'slug','content', 'user_id', 'category_id'
     ];
 
     /**
@@ -46,11 +48,19 @@ class Post extends Resource
             ID::make()->sortable(),
             Text::make('Title')
                 ->required(),
+            Slug::make('Slug')
+                ->from('Title')
+                ->separator('-'),
             BelongsTo::make('Category'),
             TinymceEditor::make(__('Content'), 'content')
                 ->rules(['required', 'min:20'])
                 ->fullWidth()
                 ->help(__('The content of the article.')),
+            Select::make('Status')->options([
+                'draft' => 'Draft',
+                'published' => 'Published'
+
+            ]),
             BelongsTo::make('User')
         ];
     }
