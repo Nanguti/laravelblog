@@ -1,0 +1,30 @@
+[22-Sep-2023 19:10:08 UTC] PHP Warning:  require(/home/nangutic/thesyntax.nanguti.co.ke/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/nangutic/thesyntax.nanguti.co.ke/public/index.php on line 34
+[22-Sep-2023 19:10:08 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/nangutic/thesyntax.nanguti.co.ke/public/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home/nangutic/thesyntax.nanguti.co.ke/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/nangutic/thesyntax.nanguti.co.ke/public/index.php on line 34
+[22-Sep-2023 19:10:09 UTC] PHP Warning:  require(/home/nangutic/thesyntax.nanguti.co.ke/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/nangutic/thesyntax.nanguti.co.ke/public/index.php on line 34
+[22-Sep-2023 19:10:09 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/nangutic/thesyntax.nanguti.co.ke/public/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home/nangutic/thesyntax.nanguti.co.ke/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/nangutic/thesyntax.nanguti.co.ke/public/index.php on line 34
+[22-Sep-2023 19:17:27 UTC] PHP Warning:  require(/home/nangutic/thesyntax.nanguti.co.ke/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/nangutic/thesyntax.nanguti.co.ke/public/index.php on line 34
+[22-Sep-2023 19:17:27 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/nangutic/thesyntax.nanguti.co.ke/public/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home/nangutic/thesyntax.nanguti.co.ke/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/nangutic/thesyntax.nanguti.co.ke/public/index.php on line 34
+[22-Sep-2023 19:17:27 UTC] PHP Warning:  require(/home/nangutic/thesyntax.nanguti.co.ke/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/nangutic/thesyntax.nanguti.co.ke/public/index.php on line 34
+[22-Sep-2023 19:17:27 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/nangutic/thesyntax.nanguti.co.ke/public/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home/nangutic/thesyntax.nanguti.co.ke/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/nangutic/thesyntax.nanguti.co.ke/public/index.php on line 34
+[22-Sep-2023 19:19:38 UTC] PHP Warning:  require(/home/nangutic/thesyntax.nanguti.co.ke/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/nangutic/thesyntax.nanguti.co.ke/public/index.php on line 34
+[22-Sep-2023 19:19:38 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/nangutic/thesyntax.nanguti.co.ke/public/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home/nangutic/thesyntax.nanguti.co.ke/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/nangutic/thesyntax.nanguti.co.ke/public/index.php on line 34
+[22-Sep-2023 19:19:39 UTC] PHP Warning:  require(/home/nangutic/thesyntax.nanguti.co.ke/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/nangutic/thesyntax.nanguti.co.ke/public/index.php on line 34
+[22-Sep-2023 19:19:39 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/nangutic/thesyntax.nanguti.co.ke/public/../vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home/nangutic/thesyntax.nanguti.co.ke/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/nangutic/thesyntax.nanguti.co.ke/public/index.php on line 34
