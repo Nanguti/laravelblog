@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
@@ -50,7 +51,12 @@ class Category extends Resource
                 ->from('Name')
                 ->separator('-'),
             Textarea::make('Description')
-                ->required()
+                ->required(),
+            Select::make('Status')->options([
+                'draft' => 'Draft',
+                'published' => 'Published'
+
+            ]),
         ];
     }
 
