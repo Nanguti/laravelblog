@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
@@ -28,3 +29,8 @@ Route::post('/post/detail', [PostController::class, 'postDetail']);
 Route::post('/add/comment', [CommentController::class, 'store']);
 Route::post('/update/comment', [CommentController::class, 'update']);
 Route::delete('/delete/comment/{id}', [CommentController::class, 'destroy']);
+
+// categories
+Route::get('/category/list', [CategoryController::class, 'categories']);
+Route::post('/category/detail', [CategoryController::class, 'categoryDetail']);
+

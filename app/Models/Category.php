@@ -15,4 +15,9 @@ class Category extends Model
     {
         return $this->hasMany(Post::class);
     }
+
+    public static function getCategoryBySlug($slug)
+    {
+        return Category::where('slug', $slug)->first();
+    }
 }
