@@ -9,7 +9,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'content', 'user_id', 'category_id'];
+    protected $fillable = ['title', 'content', 'user_id', 'category_id', 'summary'];
 
     public function user()
     {
@@ -32,7 +32,7 @@ class Post extends Model
     }
 
     public function relatedPosts(){
-        return $this->hasMany(Post::class,'category_id','category_id')->where('status','active')->orderBy('id','DESC')->limit(4);
+        return $this->hasMany(Post::class,'category_id','category_id')->where('status','published')->orderBy('id','DESC')->limit(4);
     }
 
     public static function getPostBySlug($slug)

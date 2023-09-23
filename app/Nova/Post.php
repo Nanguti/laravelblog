@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Murdercode\TinymceEditor\TinymceEditor;
 
@@ -51,6 +52,8 @@ class Post extends Resource
             Slug::make('Slug')
                 ->from('Title')
                 ->separator('-'),
+            Textarea::make('Summary')
+                ->required(),
             BelongsTo::make('Category'),
             TinymceEditor::make(__('Content'), 'content')
                 ->rules(['required', 'min:20'])
