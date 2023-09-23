@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\JobListingController;
 use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,3 +35,5 @@ Route::delete('/delete/comment/{id}', [CommentController::class, 'destroy']);
 Route::get('/category/list', [CategoryController::class, 'categories']);
 Route::post('/category/detail', [CategoryController::class, 'categoryDetail']);
 
+//job listing
+Route::get('/import/jobs', [JobListingController::class, 'importJobs']);
