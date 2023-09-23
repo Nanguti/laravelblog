@@ -31,21 +31,33 @@ class JobListingController extends Controller
             if (!$existingJob) {
                 // Job does not exist, insert it
                 $additionalDetails = $this->fetchAdditionalDetails($client, $link);
+                $slug  = $this->createSlugFromTitile($title);
 
                 $jobListingId = DB::table('job_listings')->insertGetId([
                     'title' => $title,
+                    'slug' => $slug,
                     'date_published' => $publishDate,
                     'description' => $description,
                     'industry' => $industry,
                     'job_key_info' => $additionalDetails['job_key_info'],
                     'job_details' => $additionalDetails['job_details'],
                     'application_method' => $additionalDetails['application_method'],
-                    'link' => $link, // Include the link as a unique identifier
+                    'link' => $link,
                 ]);
             }
         }
 
         return "Job listings imported successfully!";
+    }
+
+
+    function createSlug($title) 
+    {
+        $slug = strtolower(str_replace(' ', '-', $title));
+        $slug = preg_replace('/[^A-Za-z0-9\-]/', '', $slug);
+        $slug = preg_replace('/-+/', '-', $slug);
+    
+        return $slug;
     }
 
 
