@@ -37,3 +37,4 @@ Route::post('/category/detail', [CategoryController::class, 'categoryDetail']);
 
 //job listing
 Route::get('/import/jobs', [JobListingController::class, 'importJobs']);
+Route::get('/jobs/list', [JobListingController::class, 'jobList']);
