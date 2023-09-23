@@ -89,7 +89,7 @@ class JobListingController extends Controller
     }
 
     public function jobDetail(Request $request){
-        $jodDetails = JobListing::getJobBySlug($request->slug);
+        $jodDetails = JobListing::where('slug',$request->slug)->first();
         return response()->json(['jobDetails' => $jodDetails]);
     }
 }
