@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JobListing;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 use Goutte\Client;
+use Illuminate\Http\Request;
 
 class JobListingController extends Controller
 {
@@ -24,14 +26,14 @@ class JobListingController extends Controller
             $link = (string)$item->link;
             $description = (string)$item->description;
             $publishDate = (string)$item->pubDate;
+            $slug  = $this->createSlugFromTitle($title);
 
             // Check if the job already exists in the database
-            $existingJob = DB::table('job_listings')->where('link', $link)->first();
+            $existingJob = DB::table('job_listings')->where('slug', $slug)->first();
 
             if (!$existingJob) {
                 // Job does not exist, insert it
                 $additionalDetails = $this->fetchAdditionalDetails($client, $link);
-                $slug  = $this->createSlugFromTitile($title);
 
                 $jobListingId = DB::table('job_listings')->insertGetId([
                     'title' => $title,
@@ -51,7 +53,7 @@ class JobListingController extends Controller
     }
 
 
-    function createSlug($title) 
+    function createSlugFromTitle($title) 
     {
         $slug = strtolower(str_replace(' ', '-', $title));
         $slug = preg_replace('/[^A-Za-z0-9\-]/', '', $slug);
@@ -84,5 +86,10 @@ class JobListingController extends Controller
             ->paginate(10);
         return response()->json(['jobs' => $jobs]);
 
+    }
+
+    public function jobDetail(Request $request){
+        $jodDetails = JobListing::getJobBySlug($request->slug);
+        return response()->json(['jobDetails' => $jodDetails]);
     }
 }
