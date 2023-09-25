@@ -95,19 +95,13 @@ class JobListingController extends Controller
 
     public function autocompleteSearch(Request $request){
         $query = $request->query('query');
-    
-        $suggestions = JobListing::where('title', 'like', '%' . $query . '%')
-            ->orWhere('slug', 'like', '%' . $query . '%')
-            ->orWhere('description', 'like', '%' . $query . '%')
-            ->orWhere('industry', 'like', '%' . $query . '%')
-            ->orWhere('date_published', 'like', '%' . $query . '%')
-            ->orWhere('job_key_info', 'like', '%' . $query . '%')
-            ->orWhere('job_details', 'like', '%' . $query . '%')
-            ->orderBy('id', 'DESC')
+
+        $suggestions = JobListing::whereRaw("MATCH(title, slug, description, industry, job_key_info, job_details) AGAINST(? IN BOOLEAN MODE)", [$query])
+            ->orderByRaw("STR_TO_DATE(date_published, '%a, %d %b %Y %H:%i:%s GMT') DESC")
             ->limit(10)
-            ->get(); 
-    
-        $suggestionData = $suggestions->map(function ($job) {
+            ->get();
+
+            $suggestionData = $suggestions->map(function ($job) {
             return [
                 'id' => $job->id,
                 'label' => $job->title,
@@ -118,6 +112,7 @@ class JobListingController extends Controller
         return response()->json([
             'suggestions' => $suggestionData,
         ]);
-    }
+    }    
+    
     
 }
