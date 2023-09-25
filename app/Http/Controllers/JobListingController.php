@@ -92,4 +92,32 @@ class JobListingController extends Controller
         $jodDetails = JobListing::where('slug',$request->slug)->first();
         return response()->json(['jobDetails' => $jodDetails]);
     }
+
+    public function autocompleteSearch(Request $request){
+        $query = $request->query('query');
+    
+        $suggestions = JobListing::where('title', 'like', '%' . $query . '%')
+            ->orWhere('slug', 'like', '%' . $query . '%')
+            ->orWhere('description', 'like', '%' . $query . '%')
+            ->orWhere('industry', 'like', '%' . $query . '%')
+            ->orWhere('date_published', 'like', '%' . $query . '%')
+            ->orWhere('job_key_info', 'like', '%' . $query . '%')
+            ->orWhere('job_details', 'like', '%' . $query . '%')
+            ->orderBy('id', 'DESC')
+            ->limit(10)
+            ->get(); 
+    
+        $suggestionData = $suggestions->map(function ($job) {
+            return [
+                'id' => $job->id,
+                'label' => $job->title,
+                'slug' => $job->slug
+            ];
+        });
+    
+        return response()->json([
+            'suggestions' => $suggestionData,
+        ]);
+    }
+    
 }

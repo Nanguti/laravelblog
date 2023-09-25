@@ -39,3 +39,4 @@ Route::post('/category/detail', [CategoryController::class, 'categoryDetail']);
 Route::get('/import/jobs', [JobListingController::class, 'importJobs']);
 Route::get('/jobs/list', [JobListingController::class, 'jobList']);
 Route::post('/job/details', [JobListingController::class, 'jobDetail']);
+Route::post('/search/job', [JobListingController::class, 'autocompleteSearch']);
