@@ -83,7 +83,7 @@ class JobListingController extends Controller
     public function jobList(){
         $jobs = DB::table('job_listings')
             ->orderByRaw("STR_TO_DATE(date_published, '%a, %d %b %Y %H:%i:%s GMT') DESC")
-            ->paginate(10);
+            ->paginate(20);
         return response()->json(['jobs' => $jobs]);
 
     }
