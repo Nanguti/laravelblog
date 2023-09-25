@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Murdercode\TinymceEditor\TinymceEditor;
@@ -59,6 +60,7 @@ class Post extends Resource
                 ->rules(['required', 'min:20'])
                 ->fullWidth()
                 ->help(__('The content of the article.')),
+            Image::make('Featured Image'),
             Select::make('Status')->options([
                 'draft' => 'Draft',
                 'published' => 'Published'
