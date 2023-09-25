@@ -105,7 +105,8 @@ class JobListingController extends Controller
             return [
                 'id' => $job->id,
                 'label' => $job->title,
-                'slug' => $job->slug
+                'slug' => $job->slug,
+                'description' => $job->description
             ];
         });
     
