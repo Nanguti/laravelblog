@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\JobListingController;
 use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
@@ -40,3 +41,5 @@ Route::get('/import/jobs', [JobListingController::class, 'importJobs']);
 Route::get('/jobs/list', [JobListingController::class, 'jobList']);
 Route::post('/job/details', [JobListingController::class, 'jobDetail']);
 Route::post('/search/job', [JobListingController::class, 'autocompleteSearch']);
+
+Route::post('/contactus', [ContactController::class, 'submitForm']);

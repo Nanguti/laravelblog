@@ -44,10 +44,10 @@ return [
         'wordcount',
         'autoresize',
     ],
-    'toolbar' => [
+    'toolbar' => [ 
         'undo redo restoredraft | h2 h3 h4 |
-                 bold italic underline strikethrough blockquote removeformat |
-                 align bullist numlist outdent indent | image media link anchor table | code mceInsertRawHTML fullscreen spoiler | cut copy paste | ToggleSidebar',
+        bold italic underline strikethrough blockquote removeformat |
+        align bullist numlist outdent indent | image media link anchor table | code mceInsertRawHTML fullscreen spoiler | cut copy paste | ToggleSidebar',
     ],
 
     /**
