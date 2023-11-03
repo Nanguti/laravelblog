@@ -16,6 +16,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
+
+        Nova::style('prism-css', asset('assets/prism.css'));
+        Nova::script('prism-js', asset('assets/prism.js'));
+        
     }
 
     /**

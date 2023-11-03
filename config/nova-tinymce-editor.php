@@ -43,11 +43,12 @@ return [
         'code',
         'wordcount',
         'autoresize',
+        'codesample'
     ],
     'toolbar' => [ 
         'undo redo restoredraft | h2 h3 h4 |
         bold italic underline strikethrough blockquote removeformat |
-        align bullist numlist outdent indent | image media link anchor table | code mceInsertRawHTML fullscreen spoiler | cut copy paste | ToggleSidebar',
+        align bullist numlist outdent indent | image media link anchor table | code mceInsertRawHTML fullscreen spoiler | cut copy paste | ToggleSidebar codesample',
     ],
 
     /**
