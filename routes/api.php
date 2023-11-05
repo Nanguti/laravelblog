@@ -5,6 +5,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\JobListingController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TutorialController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -43,3 +44,7 @@ Route::post('/job/details', [JobListingController::class, 'jobDetail']);
 Route::post('/search/job', [JobListingController::class, 'autocompleteSearch']);
 
 Route::post('/contactus', [ContactController::class, 'submitForm']);
+
+// tutorials
+
+Route::get('/youtube-tutorials', [TutorialController::class,'index']);
