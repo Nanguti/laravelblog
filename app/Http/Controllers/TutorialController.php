@@ -20,4 +20,11 @@ class TutorialController extends Controller
             'tutorials'=>$tutorials
         ]);
     }
+
+    public function getTutorialsByCategory(Request $request){
+        $results = Category::getTutorialsByCategory($request->slug);
+        return response()->json([
+            'results' => $results,
+        ]);
+    }
 }

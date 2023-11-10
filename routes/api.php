@@ -48,3 +48,4 @@ Route::post('/contactus', [ContactController::class, 'submitForm']);
 // tutorials
 
 Route::get('/youtube-tutorials', [TutorialController::class,'index']);
+Route::post('/category/tutorials', [TutorialController::class,'getTutorialsByCategory']);

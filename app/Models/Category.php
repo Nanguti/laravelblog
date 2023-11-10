@@ -20,4 +20,12 @@ class Category extends Model
     {
         return Category::where('slug', $slug)->first();
     }
+    public function tutorials(){
+        return $this->hasMany(Tutorial::class);
+    }
+
+    public static function getTutorialsByCategory($slug){
+        
+        return Category::with('tutorials')->where('slug',$slug)->first();
+    }
 }
