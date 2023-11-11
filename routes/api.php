@@ -46,6 +46,6 @@ Route::post('/search/job', [JobListingController::class, 'autocompleteSearch']);
 Route::post('/contactus', [ContactController::class, 'submitForm']);
 
 // tutorials
-
 Route::get('/youtube-tutorials', [TutorialController::class,'index']);
 Route::post('/category/tutorials', [TutorialController::class,'getTutorialsByCategory']);
+Route::post('/category/posts', [PostController::class,'postsByCategory']);

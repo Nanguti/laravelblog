@@ -26,6 +26,18 @@ class PostController extends Controller
             ]);
     }
 
+    public function postsByCategory(Request $request){
+        $posts = Post::where(['status'=> 'published', 'slug'=>$request->slug])
+            ->with('comments')
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+            
+        return response()
+            ->json([
+                'posts' => $posts
+            ]);
+    }
+
     public function postDetail(Request $request)
     {
         $postDetail = Post::getPostBySlug($request->slug);
