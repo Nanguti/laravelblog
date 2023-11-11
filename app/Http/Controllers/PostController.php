@@ -13,7 +13,7 @@ class PostController extends Controller
 
     public function posts()
     {
-        $categories= Category:: all();
+        $categories= Category::where('status', 'published')->get();
         $posts = Post::where('status', 'published')
             ->with('comments')
             ->orderBy('id', 'desc')
