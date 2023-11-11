@@ -27,7 +27,7 @@ class PostController extends Controller
     }
 
     public function postsByCategory(Request $request){
-        $posts = Post::where(['status'=> 'published', 'slug'=>$request->slug])
+        $posts = Post::where(['status'=> 'published', 'category_id'=>$request->category_id])
             ->with('comments')
             ->orderBy('id', 'desc')
             ->paginate(10);
