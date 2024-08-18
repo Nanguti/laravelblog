@@ -53,12 +53,12 @@ class JobListingController extends Controller
     }
 
 
-    function createSlugFromTitle($title) 
+    function createSlugFromTitle($title)
     {
         $slug = strtolower(str_replace(' ', '-', $title));
         $slug = preg_replace('/[^A-Za-z0-9\-]/', '', $slug);
         $slug = preg_replace('/-+/', '-', $slug);
-    
+
         return $slug;
     }
 
@@ -70,7 +70,7 @@ class JobListingController extends Controller
         $jobDetails = $crawler->filter('#printable .job-details')->html();
         $job_key_info = $crawler->filter('#printable .job-key-info')->html();
         $applicationMethod = $crawler->filter('#printable .bm-b-30')->html();
-        
+
 
         // Return the extracted information
         return [
@@ -80,28 +80,45 @@ class JobListingController extends Controller
         ];
     }
 
-    public function jobList(){
+    public function jobList()
+    {
         $jobs = DB::table('job_listings')
-            ->orderByRaw("STR_TO_DATE(date_published, '%a, %d %b %Y %H:%i:%s GMT') DESC")
+            ->orderByRaw("STR_TO_DATE(date_published, 
+            '%a, %d %b %Y %H:%i:%s GMT') DESC")
             ->paginate(20);
         return response()->json(['jobs' => $jobs]);
-
     }
 
-    public function jobDetail(Request $request){
-        $jodDetails = JobListing::where('slug',$request->slug)->first();
+    public function softwareDevelopmentJobs()
+    {
+        $jobs = DB::table('job_listings')
+            ->where('job_details', 'like', '%software%')
+            ->where('industry', 'ICT / Telecommunication')
+            ->orderByRaw("STR_TO_DATE(date_published, '%a, %d %b %Y %H:%i:%s GMT') DESC")
+            ->paginate(20);
+
+        return response()->json(['jobs' => $jobs]);
+    }
+
+
+    public function jobDetail(Request $request)
+    {
+        $jodDetails = JobListing::where('slug', $request->slug)->first();
         return response()->json(['jobDetails' => $jodDetails]);
     }
 
-    public function autocompleteSearch(Request $request){
+    public function autocompleteSearch(Request $request)
+    {
         $query = $request->query('query');
 
-        $suggestions = JobListing::whereRaw("MATCH(title, slug, description, industry, job_key_info, job_details) AGAINST(? IN BOOLEAN MODE)", [$query])
+        $suggestions = JobListing::whereRaw("MATCH(title, slug, 
+        description, industry, job_key_info, job_details) 
+        AGAINST(? IN BOOLEAN MODE)", [$query])
             ->orderByRaw("STR_TO_DATE(date_published, '%a, %d %b %Y %H:%i:%s GMT') DESC")
             ->limit(10)
             ->get();
 
-            $suggestionData = $suggestions->map(function ($job) {
+        $suggestionData = $suggestions->map(function ($job) {
             return [
                 'id' => $job->id,
                 'label' => $job->title,
@@ -109,11 +126,9 @@ class JobListingController extends Controller
                 'description' => $job->description
             ];
         });
-    
+
         return response()->json([
             'suggestions' => $suggestionData,
         ]);
-    }    
-    
-    
+    }
 }

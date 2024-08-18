@@ -40,12 +40,13 @@ Route::post('/category/detail', [CategoryController::class, 'categoryDetail']);
 //job listing
 Route::get('/import/jobs', [JobListingController::class, 'importJobs']);
 Route::get('/jobs/list', [JobListingController::class, 'jobList']);
+Route::get('/software/development/jobs', [JobListingController::class, 'softwareDevelopmentJobs']);
 Route::post('/job/details', [JobListingController::class, 'jobDetail']);
 Route::post('/search/job', [JobListingController::class, 'autocompleteSearch']);
 
 Route::post('/contactus', [ContactController::class, 'submitForm']);
 
 // tutorials
-Route::get('/youtube-tutorials', [TutorialController::class,'index']);
-Route::post('/category/tutorials', [TutorialController::class,'getTutorialsByCategory']);
-Route::post('/category/posts', [PostController::class,'postsByCategory']);
+Route::get('/youtube-tutorials', [TutorialController::class, 'index']);
+Route::post('/category/tutorials', [TutorialController::class, 'getTutorialsByCategory']);
+Route::post('/category/posts', [PostController::class, 'postsByCategory']);
